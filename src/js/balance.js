@@ -9,6 +9,8 @@ export default class Balance {
   set stoned(value) {
     if (value === 1 || value === 0) {
       this._stoned = value;
+    } else {
+      throw new Error('invalid parametr');
     }
   }
 
@@ -24,6 +26,6 @@ export default class Balance {
     if (this.stoned === 0) {
       return this._attack * (1 - (this.distance - 1) / 10);
     }
-    return this._attack - Math.log2(this.distance) * 5;
+    return this._attack * (1 - (this.distance - 1) / 10) - Math.log2(this.distance) * 5;
   }
 }
